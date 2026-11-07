@@ -1,0 +1,1393 @@
+
+/* ==========================================
+   DAYBREAK — WARM EDITORIAL DESIGN SYSTEM
+   ========================================== */
+
+/* 01. DESIGN TOKENS */
+
+:root {
+  color-scheme: dark;
+
+  --bg: #211c19;
+  --panel: #2b241f;
+  --line: #40352d;
+
+  --ink: #eee4d5;
+  --mute: #aa9b8b;
+
+  --acc: #d49a70;
+  --acc-ink: #211c19;
+
+  --warn: #e2b878;
+  --warn-bg: rgba(226, 184, 120, 0.12);
+
+  --sans: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "Geist Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --radius: 10px;
+  --radius-sm: 6px;
+
+  --shadow:
+    0 12px 35px rgba(0, 0, 0, 0.16);
+
+  --ease: cubic-bezier(.22, .61, .36, 1);
+}
+
+/* DAWN THEME */
+
+:root[data-theme=dawn] {
+  color-scheme: light;
+
+  --bg: #f5efe5;
+  --panel: #eee5d7;
+  --line: #d9cbbb;
+
+  --ink: #332820;
+  --mute: #817366;
+
+  --acc: #a85f3e;
+  --acc-ink: #fffaf4;
+
+  --warn: #98602f;
+  --warn-bg: rgba(180, 121, 64, 0.12);
+
+  --shadow:
+    0 12px 35px rgba(80, 55, 35, 0.07);
+}
+
+
+/* 02. GLOBAL RESET */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+
+  font: 16px/1.8 var(--sans);
+  letter-spacing: .005em;
+
+  transition:
+    background-color .45s ease,
+    color .35s ease;
+}
+
+::selection {
+  background: var(--acc);
+  color: var(--acc-ink);
+}
+
+a {
+  color: var(--acc);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 4px;
+}
+
+
+/* 03. MAIN CONTAINER */
+
+.wrap {
+  max-width: 1160px;
+  margin: 0 auto;
+
+  border-inline: 1px solid var(--line);
+
+  padding: 0 42px;
+}
+
+
+/* 04. TYPOGRAPHY */
+
+.mono {
+  font-family: var(--mono);
+  font-size: .78rem;
+  letter-spacing: .045em;
+}
+
+.muted {
+  color: var(--mute);
+}
+
+.small {
+  font-size: .88rem;
+}
+
+code,
+pre {
+  font-family: var(--mono);
+  font-size: .85rem;
+}
+
+code {
+  background: var(--panel);
+  color: var(--acc);
+
+  padding: .2em .45em;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+}
+
+pre {
+  background: var(--panel);
+  color: var(--ink);
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+
+  padding: 22px;
+  overflow-x: auto;
+
+  line-height: 1.75;
+  margin: 1.5em 0 .5em;
+
+  box-shadow: var(--shadow);
+}
+
+pre code {
+  border: 0;
+  padding: 0;
+  background: transparent;
+}
+
+
+/* 05. TOP NAVIGATION */
+
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 17px 0;
+  margin: 0 -42px;
+  padding-inline: 42px;
+
+  background: var(--bg);
+
+  border-bottom: 1px solid var(--line);
+
+  transition:
+    background-color .4s ease,
+    border-color .4s ease;
+}
+
+.brand {
+  font-weight: 650;
+  font-size: 1rem;
+
+  letter-spacing: -.035em;
+
+  text-decoration: none;
+  color: var(--ink);
+
+  transition: color .3s ease;
+}
+
+.brand:hover {
+  color: var(--acc);
+}
+
+.bar-r {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+
+  font-size: .85rem;
+}
+
+.bar-r a {
+  color: var(--mute);
+  text-decoration: none;
+
+  transition: color .25s ease;
+}
+
+.bar-r a:hover {
+  color: var(--acc);
+}
+
+.ghost {
+  font: 500 .78rem var(--mono);
+
+  color: var(--ink);
+  background: transparent;
+
+  border: 1px solid var(--line);
+  border-radius: 7px;
+
+  padding: 8px 13px;
+
+  cursor: pointer;
+
+  transition:
+    background .3s ease,
+    border-color .3s ease,
+    color .3s ease,
+    transform .25s var(--ease);
+}
+
+.ghost:hover {
+  border-color: var(--acc);
+  color: var(--acc);
+  background: var(--warn-bg);
+
+  transform: translateY(-2px);
+}
+
+.ghost:active {
+  transform: scale(.97);
+}
+
+
+/* 06. HERO SECTION */
+
+.hero {
+  padding: 96px 0 64px;
+
+  border-bottom: 1px solid var(--line);
+
+  position: relative;
+}
+
+/* Decorative eyebrow-style elements */
+
+.hero .mono {
+  color: var(--acc);
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+
+  line-height: .99;
+  letter-spacing: -.065em;
+
+  font-weight: 600;
+
+  margin: .35em 0 .4em;
+
+  max-width: 12ch;
+}
+
+.sub {
+  font-size: clamp(1.2rem, 2.5vw, 1.55rem);
+
+  line-height: 1.4;
+  letter-spacing: -.035em;
+
+  max-width: 34ch;
+
+  margin: 0 0 1em;
+
+  color: var(--ink);
+}
+
+.lede {
+  color: var(--mute);
+
+  max-width: 60ch;
+
+  font-size: 1rem;
+  line-height: 1.85;
+}
+
+.cta {
+  margin: 2em 0 2.8em;
+}
+
+
+/* 07. PRIMARY BUTTON */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--acc);
+  color: var(--acc-ink);
+
+  padding: 13px 23px;
+
+  border-radius: 7px;
+
+  font-size: .9rem;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  border: 1px solid transparent;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, .12);
+
+  transition:
+    transform .3s var(--ease),
+    box-shadow .3s ease,
+    background .3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, .2);
+
+  filter: brightness(1.07);
+}
+
+.btn:active {
+  transform: translateY(0) scale(.98);
+}
+
+
+/* 08. THEME SWITCH */
+
+.switch {
+  vertical-align: middle;
+
+  margin-left: .2em;
+
+  width: 1.65em;
+  height: .9em;
+
+  border-radius: 1em;
+
+  background: var(--panel);
+  border: 1px solid var(--line);
+
+  position: relative;
+
+  cursor: pointer;
+  padding: 0;
+
+  transition:
+    background .4s ease,
+    border-color .4s ease,
+    transform .3s ease;
+}
+
+.switch:hover {
+  transform: scale(1.08);
+}
+
+.switch span {
+  position: absolute;
+
+  top: .08em;
+  left: .08em;
+
+  width: .65em;
+  height: .65em;
+
+  border-radius: 50%;
+
+  background: var(--acc);
+
+  transition:
+    transform .4s var(--ease),
+    background .4s ease;
+}
+
+[data-theme=dawn] .switch {
+  background: var(--acc);
+  border-color: var(--acc);
+}
+
+[data-theme=dawn] .switch span {
+  transform: translateX(.75em);
+  background: #fff8ed;
+}
+
+
+/* 09. IMAGE & MEDIA PLACEHOLDERS */
+
+.slot {
+  position: relative;
+
+  margin: 2.4em 0;
+
+  aspect-ratio: 16 / 9;
+
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+
+  display: grid;
+  place-items: center;
+
+  text-align: center;
+
+  padding: 28px;
+
+  color: var(--mute);
+  font-size: .9rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--panel),
+      var(--bg)
+    );
+
+  overflow: hidden;
+
+  transition:
+    border-color .3s ease,
+    transform .4s var(--ease);
+}
+
+.slot:hover {
+  border-color: var(--acc);
+  transform: translateY(-3px);
+}
+
+.slot b {
+  display: block;
+
+  color: var(--acc);
+
+  font-family: var(--mono);
+  font-size: .82rem;
+
+  margin-bottom: 8px;
+}
+
+.slot img {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  background: var(--bg);
+}
+
+
+/* 10. SETUP / COMMAND BLOCK */
+
+.setup {
+  position: relative;
+}
+
+.setup .ghost {
+  position: absolute;
+
+  right: 10px;
+  top: 48px;
+
+  z-index: 2;
+}
+
+
+/* 11. MAIN CONTENT LAYOUT */
+
+.layout {
+  display: grid;
+
+  grid-template-columns: 190px minmax(0, 740px);
+
+  gap: 64px;
+
+  padding-top: 60px;
+  padding-bottom: 70px;
+}
+
+
+/* 12. SIDE NAVIGATION */
+
+.rail {
+  position: sticky;
+  top: 100px;
+
+  align-self: start;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+
+  font-size: .84rem;
+
+  border-left: 1px solid var(--line);
+}
+
+.rail a {
+  color: var(--mute);
+
+  text-decoration: none;
+
+  padding: 7px 0 7px 16px;
+
+  margin-left: -1px;
+
+  border-left: 2px solid transparent;
+
+  transition:
+    color .25s ease,
+    border-color .25s ease,
+    transform .3s var(--ease);
+}
+
+.rail a:hover {
+  color: var(--acc);
+  transform: translateX(3px);
+}
+
+.rail a.on {
+  color: var(--acc);
+
+  border-color: var(--acc);
+
+  font-weight: 600;
+}
+
+
+/* 13. ARTICLE SECTIONS */
+
+section {
+  padding-bottom: 46px;
+  scroll-margin-top: 100px;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3vw, 2.15rem);
+
+  letter-spacing: -.045em;
+  line-height: 1.2;
+
+  font-weight: 600;
+
+  margin: 1.6em 0 .7em;
+}
+
+h3 {
+  font-size: 1.15rem;
+
+  letter-spacing: -.025em;
+
+  margin: 1.8em 0 .55em;
+
+  font-weight: 600;
+}
+
+p {
+  margin: .8em 0 1.1em;
+}
+
+
+/* 14. BLOCKQUOTES */
+
+blockquote {
+  margin: 1.8em 0;
+
+  padding: 18px 24px;
+
+  border-left: 3px solid var(--acc);
+
+  background: var(--panel);
+
+  border-radius: 0 8px 8px 0;
+
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+
+
+/* 15. EDITORIAL PULL QUOTES */
+
+.pull {
+  font-size: clamp(1.35rem, 3vw, 1.7rem);
+
+  line-height: 1.4;
+
+  font-weight: 500;
+  letter-spacing: -.035em;
+
+  margin: 2em 0;
+
+  padding: 24px 0;
+
+  border-block: 1px solid var(--line);
+
+  color: var(--acc);
+}
+
+.cap {
+  font-size: .83rem;
+  color: var(--mute);
+
+  margin-top: 0;
+}
+
+
+/* 16. TABLES */
+
+.tbl {
+  overflow-x: auto;
+
+  margin: 1.8em 0;
+
+  border: 1px solid var(--line);
+  border-radius: 9px;
+}
+
+table {
+  border-collapse: collapse;
+
+  width: 100%;
+
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+th,
+td {
+  text-align: left;
+  vertical-align: top;
+
+  padding: 14px 16px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+thead th {
+  font: 500 .76rem var(--mono);
+
+  letter-spacing: .035em;
+  text-transform: uppercase;
+
+  color: var(--acc);
+
+  background: var(--panel);
+}
+
+tbody th {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+tbody tr {
+  transition: background .25s ease;
+}
+
+tbody tr:hover {
+  background: var(--warn-bg);
+}
+
+tbody tr:last-child td,
+tbody tr:last-child th {
+  border-bottom: 0;
+}
+
+
+/* 17. WORKFLOW DIAGRAM */
+
+.flow {
+  list-style: none;
+
+  padding: 0;
+  margin: 2em 0;
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  border: 1px solid var(--line);
+  border-radius: 10px;
+
+  overflow: hidden;
+
+  background: var(--panel);
+
+  font-size: .83rem;
+  line-height: 1.55;
+
+  box-shadow: var(--shadow);
+}
+
+.flow li {
+  padding: 17px 14px;
+
+  border-left: 1px solid var(--line);
+
+  color: var(--mute);
+
+  transition:
+    background .3s ease,
+    color .3s ease;
+}
+
+.flow li:hover {
+  background: var(--warn-bg);
+  color: var(--ink);
+}
+
+.flow li:first-child {
+  border-left: 0;
+}
+
+.flow b {
+  display: block;
+
+  font: 500 .77rem var(--mono);
+
+  color: var(--acc);
+
+  margin-bottom: 9px;
+}
+
+
+/* 18. DECISION LISTS */
+
+.dec {
+  padding-left: 1.3em;
+}
+
+.dec li {
+  margin-bottom: .85em;
+  padding-left: .25em;
+}
+
+.dec li::marker {
+  color: var(--acc);
+}
+
+
+/* 19. EXPANDABLE DETAILS */
+
+details {
+  border-top: 1px solid var(--line);
+
+  padding: 16px 0;
+
+  transition: border-color .3s ease;
+}
+
+details:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+summary {
+  cursor: pointer;
+
+  font-weight: 550;
+
+  transition: color .25s ease;
+}
+
+summary:hover {
+  color: var(--acc);
+}
+
+details[open] summary {
+  color: var(--acc);
+}
+
+details > *:not(summary) {
+  animation: detailsReveal .35s ease both;
+}
+
+@keyframes detailsReveal {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* 20. FOOTER */
+
+.end {
+  border-top: 1px solid var(--line);
+
+  padding-top: 18px;
+  padding-bottom: 28px;
+
+  color: var(--mute);
+}
+
+
+/* 21. DRAFT NOTES & WARNINGS */
+
+.tbc {
+  background: var(--warn-bg);
+  color: var(--warn);
+
+  padding: .12em .5em;
+
+  border-radius: 4px;
+
+  font-size: .86em;
+}
+
+.note {
+  font-size: .87rem;
+
+  color: var(--warn);
+
+  background: var(--warn-bg);
+
+  border-left: 3px solid var(--warn);
+
+  padding: 13px 17px;
+
+  border-radius: 0 8px 8px 0;
+
+  margin: 1.5em 0;
+}
+
+.note b {
+  display: block;
+
+  font: 500 .74rem var(--mono);
+
+  letter-spacing: .04em;
+
+  margin-bottom: 4px;
+}
+
+.no-notes .note,
+.no-notes .tbc {
+  display: none;
+}
+
+
+/* 22. RESPONSIVE DESIGN — TABLETS */
+
+@media (max-width: 1000px) {
+
+  .wrap {
+    padding-inline: 28px;
+  }
+
+  .bar {
+    margin-inline: -28px;
+    padding-inline: 28px;
+  }
+
+  .layout {
+    grid-template-columns: 155px minmax(0, 1fr);
+    gap: 38px;
+  }
+
+}
+
+
+/* 23. RESPONSIVE DESIGN — MOBILE */
+
+@media (max-width: 860px) {
+
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .rail {
+    display: none;
+  }
+
+  .wrap {
+    padding: 0 22px;
+  }
+
+  .bar {
+    margin: 0 -22px;
+    padding-inline: 22px;
+  }
+
+  .hero {
+    padding: 72px 0 45px;
+  }
+
+  .flow {
+    grid-template-columns: 1fr;
+  }
+
+  .flow li {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .flow li:first-child {
+    border-top: 0;
+  }
+
+  .layout {
+    padding-top: 35px;
+  }
+
+}
+
+
+/* 24. SMALL MOBILE */
+
+@media (max-width: 520px) {
+
+  body {
+    font-size: 15px;
+  }
+
+  .wrap {
+    padding-inline: 17px;
+  }
+
+  .bar {
+    margin-inline: -17px;
+    padding-inline: 17px;
+  }
+
+  .bar-r {
+    gap: 11px;
+    font-size: .78rem;
+  }
+
+  .ghost {
+    padding: 7px 9px;
+    font-size: .7rem;
+  }
+
+  .hero {
+    padding: 58px 0 38px;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 13vw, 4rem);
+  }
+
+  .sub {
+    font-size: 1.2rem;
+  }
+
+  pre {
+    padding: 15px;
+    font-size: .77rem;
+  }
+
+  th,
+  td {
+    padding: 11px 12px;
+  }
+
+  .slot {
+    aspect-ratio: 4 / 3;
+    padding: 16px;
+  }
+
+}
+
+
+/* 25. ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+/* A little more room for the content */
+
+.wrap {
+  max-width: 1280px;
+  padding-inline: 52px;
+}
+
+/* Make the overall text easier to read */
+
+body {
+  font-size: 18px;
+  line-height: 1.85;
+}
+
+/* Give the top navigation more breathing room */
+
+.bar {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.brand {
+  font-size: 1.1rem;
+}
+
+.bar-r {
+  font-size: .95rem;
+  gap: 26px;
+}
+
+/* Hero section */
+
+.hero {
+  padding-top: 110px;
+  padding-bottom: 76px;
+}
+
+h1 {
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
+  max-width: 13ch;
+}
+
+.sub {
+  font-size: 1.65rem;
+  max-width: 38ch;
+}
+
+.lede {
+  font-size: 1.08rem;
+  max-width: 65ch;
+}
+
+/* Main content layout */
+
+.layout {
+  grid-template-columns: 210px minmax(0, 800px);
+  gap: 72px;
+  padding-top: 72px;
+  padding-bottom: 90px;
+}
+
+/* Side navigation */
+
+.rail {
+  font-size: .95rem;
+  gap: 12px;
+}
+
+.rail a {
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+/* Article headings */
+
+h2 {
+  font-size: 2.25rem;
+  margin-top: 1.7em;
+  margin-bottom: .75em;
+}
+
+h3 {
+  font-size: 1.3rem;
+  margin-top: 2em;
+}
+
+section {
+  padding-bottom: 58px;
+}
+
+/* Paragraphs and quotations */
+
+p {
+  margin-top: 1em;
+  margin-bottom: 1.3em;
+}
+
+blockquote {
+  font-size: 1.18rem;
+  padding: 22px 28px;
+}
+
+.pull {
+  font-size: 1.8rem;
+  padding: 30px 0;
+}
+
+/* Tables */
+
+table {
+  font-size: 1rem;
+}
+
+th,
+td {
+  padding: 17px 19px;
+}
+
+thead th {
+  font-size: .82rem;
+}
+
+/* Workflow diagram */
+
+.flow {
+  font-size: .94rem;
+}
+
+.flow li {
+  padding: 20px 17px;
+}
+
+.flow b {
+  font-size: .85rem;
+}
+
+/* Code blocks */
+
+pre {
+  padding: 26px;
+  font-size: .92rem;
+  line-height: 1.8;
+}
+
+code {
+  font-size: .9em;
+}
+
+/* Images and placeholders */
+
+.slot {
+  margin-top: 2.8em;
+  margin-bottom: 2.8em;
+  padding: 34px;
+  font-size: 1rem;
+}
+
+/* Buttons */
+
+.btn {
+  padding: 15px 26px;
+  font-size: 1rem;
+}
+
+.ghost {
+  padding: 10px 15px;
+  font-size: .82rem;
+}
+
+/* Notes */
+
+.note {
+  font-size: .95rem;
+  padding: 16px 20px;
+}
+
+.cap {
+  font-size: .92rem;
+}
+
+/* Medium screens */
+
+@media (max-width: 1000px) {
+  .wrap {
+    padding-inline: 30px;
+  }
+
+  .bar {
+    margin-inline: -30px;
+    padding-inline: 30px;
+  }
+
+  .layout {
+    grid-template-columns: 165px minmax(0, 1fr);
+    gap: 38px;
+  }
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 860px) {
+  .wrap {
+    padding-inline: 22px;
+  }
+
+  .bar {
+    margin-inline: -22px;
+    padding-inline: 22px;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding-top: 45px;
+  }
+
+  .hero {
+    padding-top: 75px;
+    padding-bottom: 50px;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 11vw, 4.5rem);
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .pull {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    font-size: 16px;
+  }
+
+  .wrap {
+    padding-inline: 17px;
+  }
+
+  .bar {
+    margin-inline: -17px;
+    padding-inline: 17px;
+  }
+
+  .bar-r {
+    gap: 10px;
+    font-size: .8rem;
+  }
+
+  .hero {
+    padding-top: 60px;
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 12vw, 3.8rem);
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  .sub {
+    font-size: 1.25rem;
+  }
+
+  pre {
+    padding: 16px;
+  }
+
+  th,
+  td {
+    padding: 12px;
+  }
+}
+
+
+/* A more noticeable day/night toggle */
+
+.switch {
+  width: 3.2rem;
+  height: 1.7rem;
+
+  margin-left: .3em;
+
+  border-radius: 999px;
+  border: 1px solid var(--acc);
+
+  background: var(--panel);
+
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, .12);
+
+  vertical-align: middle;
+
+  transition:
+    background .4s ease,
+    border-color .4s ease,
+    box-shadow .4s ease,
+    transform .3s ease;
+}
+
+/* Larger sliding knob */
+
+.switch span {
+  width: 1.25rem;
+  height: 1.25rem;
+
+  top: .16rem;
+  left: .16rem;
+
+  background: var(--acc);
+
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, .2);
+
+  transition:
+    transform .4s cubic-bezier(.22, .61, .36, 1),
+    background .4s ease,
+    box-shadow .4s ease;
+}
+
+/* Dawn mode */
+
+[data-theme=dawn] .switch {
+  background: #d6a477;
+  border-color: #d6a477;
+
+  box-shadow:
+    0 0 0 3px rgba(214, 164, 119, .13);
+}
+
+[data-theme=dawn] .switch span {
+  transform: translateX(1.45rem);
+
+  background: #fff8ed;
+
+  box-shadow:
+    0 2px 7px rgba(100, 60, 30, .2);
+}
+
+/* Hover interaction */
+
+.switch:hover {
+  transform: scale(1.1);
+
+  box-shadow:
+    0 0 0 4px var(--warn-bg);
+}
+
+.switch:active {
+  transform: scale(.96);
+}
+
+/* Keyboard accessibility */
+
+.switch:focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 5px;
+}
